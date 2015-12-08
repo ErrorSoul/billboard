@@ -1,3 +1,19 @@
+# == Schema Information
+#
+# Table name: vacancies
+#
+#  id           :integer          not null, primary key
+#  name         :string
+#  phone        :string
+#  email        :string
+#  salary       :decimal(10, 2)
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#  published_at :datetime
+#  validity     :integer
+#  state        :string
+#
+
 FactoryGirl.define do
   sequence(:email) { |n| "example#{ n }@mail.com" }
   sequence(:phone) { |n| "+7(902)227-22-#{ n < 10 ? 10 + n : n }" }

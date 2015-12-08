@@ -1,3 +1,19 @@
+# == Schema Information
+#
+# Table name: vacancies
+#
+#  id           :integer          not null, primary key
+#  name         :string
+#  phone        :string
+#  email        :string
+#  salary       :decimal(10, 2)
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#  published_at :datetime
+#  validity     :integer
+#  state        :string
+#
+
 require 'rails_helper'
 
 describe Vacancy do
