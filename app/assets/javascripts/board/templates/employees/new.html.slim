@@ -1,0 +1,147 @@
+.col-md-9.center-block
+  form.form-horizontal.css-form [
+    name='vForm'
+    novalidates='true'
+   ]
+
+    .form-group.col-sm-10
+      label.control-label.col-sm-2 First Name:
+      .col-sm-8
+        input.form-control.form-input [
+          type="text"
+          name="first_name"
+          ng-minlength=2
+          ng-maxlength=140
+          ng-pattern="CYRILLIC_PATTERN"
+          required
+          ng-model='employee.first_name'
+        ]
+        p ng-show="errors['first_name']"
+          | {{ errors['first_name'][0] }}
+
+        p ng-show="vForm.first_name.$error.pattern"
+          | Should be cyrillic
+
+    .form-group.col-sm-10
+      label.control-label.col-sm-2 Middle Name:
+      .col-sm-8
+        input.form-control.form-input [
+          type="text"
+          name="middle_name"
+          ng-minlength=2
+          ng-maxlength=140
+          ng-pattern="CYRILLIC_PATTERN"
+          required
+          ng-model='employee.middle_name'
+        ]
+        p ng-show="errors['middle_name']"
+          | {{ errors['middle_name'][0] }}
+
+        p ng-show="vForm.middle_name.$error.pattern"
+          | Should be cyrillic
+
+
+    .form-group.col-sm-10
+      label.control-label.col-sm-2 Last Name:
+      .col-sm-8
+        input.form-control.form-input [
+          type="text"
+          name="last_name"
+          ng-minlength=2
+          ng-maxlength=140
+          ng-pattern="CYRILLIC_PATTERN"
+          required
+          ng-model='employee.last_name'
+        ]
+        p ng-show="errors['last_name']"
+          | {{ errors['last_name'][0] }}
+
+        p ng-show="vForm.last_name.$error.pattern"
+          | Should be cyrillic
+    .form-group.col-sm-10
+      label.control-label.col-sm-2 Email:
+      .col-sm-8
+        input.form-control.form-input [
+          placeholder=("Enter email")
+          name="email"
+          type="email"
+          required
+          ng-model='employee.email'
+          ng-pattern='EMAIL_PATTERN'
+        ]
+        p ng-show="errors['email']"
+          | {{ errors['email'][0] }}
+
+    .form-group.col-sm-10
+      label.control-label.col-sm-2 Phone:
+      .col-sm-8
+        input.form-control.form-input [
+          type="text"
+          name="phone"
+          required
+          ng-model='employee.phone'
+          ui-mask="+7(999)999-99-99"
+        ]
+        p ng-show="errors['phone']"
+          | {{ errors['phone'][0] }}
+
+    .form-group.col-sm-10
+      label.control-label.col-sm-2 Salary:
+      .col-sm-8
+        input.form-control.form-input [
+          type="number"
+          name="salary"
+          min=0
+          max=1000000
+          required
+          ng-model='employee.salary'
+        ]
+        p ng-show="errors['salary']"
+          | {{ errors['salary'][0] }}
+
+
+    .form-group.col-sm-10
+      label.control-label.col-sm-2 Status:
+      .col-sm-8
+        select.form-control [
+          type="text"
+          required
+          name="status"
+          ng-model='employee.status'
+
+        ]
+          option [
+            ng-repeat="status in statusArray track by $index"
+              value="{{ status.name }}"
+          ] {{status.name}}
+
+
+
+
+    .form-group.col-sm-10 [
+      ng-repeat="skill in employee.skills | unique: 'name' "
+      ]
+      label.control-label.col-sm-2 Skill:
+      .col-sm-10
+        .col-sm-6
+          p.form-control-static {{ skill.name }}
+        .col-sm-4.pull-right
+          span.glyphicon.glyphicon-remove-circle.form-icon [
+            ng-click="removeSkill($index)"
+          ]
+
+    .form-group.col-sm-10
+      hr
+
+  .col-sm-12 ng-include="'shared/form.html'"
+
+  .form-group.col-sm-10
+    hr
+
+  .form-group
+    .col-sm-10
+      button.btn.btn-default [
+        ng-disabled="vForm.$invalid"
+        type="button"
+        ng-click="vForm.$valid && createEmployee(employee)"
+      ] Submit

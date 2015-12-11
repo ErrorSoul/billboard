@@ -1,0 +1,6 @@
+ .form-group.col-sm-12 [
+    ng-repeat="skill in skills | unique: 'name' "
+    ]
+    label.control-label.col-sm-4 Skill:
+    .col-sm-8
+      p.form-control-static {{ skill.name }}

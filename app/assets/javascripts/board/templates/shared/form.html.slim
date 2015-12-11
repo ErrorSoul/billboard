@@ -1,0 +1,48 @@
+h3 Choose/Create skill
+.col-sm-5
+  form.col-sm-12.css-form name='selectForm'
+    .form-group.col-sm-10
+      select.form-control [
+        type="text"
+        required
+        name="select_name"
+        ng-model='select.name'
+        ng-init='choose'
+      ]
+        option [
+          ng-repeat="skill in skillsArray track by $index"
+          value="{{ skill.name }}"
+        ] {{skill.name}}
+    .col-sm-2
+      button.btn.btn-default[
+        ng-disabled="selectForm.$invalid"
+        type='button'
+        ng-click="addSkillSelect()"
+      ]   Add
+
+
+.col-sm-5
+  form.col-sm-12.css-form [
+        name='myForm'
+        role="form"
+        novalidates
+      ]
+        .form-group.col-sm-10
+          input.form-control [
+            ng-unique
+            ng-minlength=2
+            ng-maxlength=140
+            name="skillName"
+            type="text"
+            ng-model="newSkill.name"
+            required
+          ]
+          p ng-show="myForm.skillName.$error.unique"
+            | Skill exist
+
+        .col-sm-2
+          button.btn.btn-default [
+            ng-disabled="myForm.$invalid"
+            type="button"
+            ng-click="addSkill()"
+          ] Add

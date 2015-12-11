@@ -1,0 +1,40 @@
+@import 'bootstrap-sprockets';
+@import 'bootstrap';
+
+.form-input {
+  border-radius: 0;
+  height: 47px;
+  }
+
+.center-block {
+  float: none;
+  }
+
+.css-form input.ng-invalid.ng-touched {
+    border: 4px solid  #FA787E;
+
+  }
+
+.css-form input.ng-valid.ng-touched {
+  border: 4px solid #78FA89;
+  }
+.css-form select.ng-invalid.ng-touched {
+    border: 4px solid  #FA787E;
+
+  }
+
+.css-form select.ng-valid.ng-touched {
+  border: 4px solid #78FA89;
+  }
+
+.my-pagination {
+  cursor: pointer;
+  }
+
+.form-icon {
+  font-size: 20px;
+  cursor: pointer;
+  &:hover {
+    color: orange;
+    }
+  }

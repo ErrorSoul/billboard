@@ -1,0 +1,39 @@
+.col-md-12
+  h4 Employees
+  .col-md-2.pull-right
+    .btn.btn-success [
+      ui-sref='employees.new'
+      ng-if="!isPublic()"
+    ] Create
+table.table.table-striped
+  thead
+    tr
+      th = :first_name
+      th = :middle_name
+      th = :last_name
+      th = :email
+      th = :phone
+      th = :salary
+      th = :status
+      th
+
+  tbody
+    tr ng-show='isEmptyEmployees()'
+      td colspan='10' =  :not_found
+
+    tr ng-hide='!isEmptyEmployees()'
+
+      tr ng-repeat='employee in employees'
+        td {{ employee.first_name }}
+        td {{ employee.middle_name }}
+        td {{ employee.last_name }}
+        td {{ employee.email }}
+        td {{ beauty_phone(employee.phone) }}
+        td {{ employee.salary }}
+        td
+          span ng-class="labelHelper(employee.status)"
+            | {{ employee.status }}
+        td
+          ng-include src="'shared/buttons_group.html'"
+
+.div ng-include="'shared/pagination.html'"

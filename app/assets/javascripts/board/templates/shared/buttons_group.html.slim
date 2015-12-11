@@ -1,0 +1,22 @@
+td ng-if="!isPublic()"
+  .btn-group aria-label=("Basic example") role="group"
+    button.btn.btn-secondary.btn-success [
+      type="button"
+      ui-sref="{{ block.names }}.show({id: {{ block.name }}.id})"
+    ] Show
+    button.btn.btn-secondary.btn-warning[
+      type="button"
+      ui-sref="{{ block.names }}.update({id: {{ block.name }}.id})"
+    ] Edit
+    button.btn.btn-secondary.btn-danger[
+      type="button"
+      ng-really-message="Are you sure"
+      ng-really-click="remove{{ block.upName }}($index)"
+    ] Delete
+
+td ng-if="isPublic()"
+  .btn-group aria-label=("Basic example") role="group"
+    button.btn.btn-secondary.btn-success [
+      type="button"
+      ui-sref="public.{{ block.names }}.show({id: {{ block.name }}.id})"
+    ] Show

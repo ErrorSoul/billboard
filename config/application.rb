@@ -32,6 +32,6 @@ module Desc
     config.active_record.raise_in_transactional_callbacks = true
 
     # Configure AngularJS Templates
-    config.angular_templates.ignore_prefix = %w(/board/templates/)
+    config.angular_templates.ignore_prefix = %w(board/templates/)
   end
 end

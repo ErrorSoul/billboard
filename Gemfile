@@ -11,10 +11,13 @@ gem 'pg'
 gem 'therubyracer'
 gem 'coffee-rails', '~> 4.1.0'
 gem 'jquery-rails'
-gem 'angular-rails-templates'
+gem 'angular-rails-templates', '0.2.0'
+
+# See: https://github.com/pitr/angular-rails-templates/issues/97
+gem 'sprockets', '2.12.3'
 
 # Twitter Bootstrap
-gem 'sass-rails', '~> 5.0'
+gem 'sass-rails'
 gem 'bootstrap-sass'
 
 # Markup

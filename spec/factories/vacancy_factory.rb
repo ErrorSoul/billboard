@@ -16,14 +16,14 @@
 
 FactoryGirl.define do
   sequence(:email) { |n| "example#{ n }@mail.com" }
-  sequence(:phone) { |n| "+7(902)227-22-#{ n < 10 ? 10 + n : n }" }
-
+  sequence(:phone) { |n| "+7(#{ n < 100 ? 100 + n : n })227-22-76" }
+  sequence(:salary) { |n| 10000 + (500 * n) }
   factory :vacancy do
     name 'Super Job'
     email
     phone
     validity 5
-    salary 1000
+    salary
     published_at { DateTime.now }
     state :unpublished
 

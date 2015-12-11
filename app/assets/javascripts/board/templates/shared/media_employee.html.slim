@@ -1,0 +1,24 @@
+
+
+.media-body
+  h4.media-heading style='text-align: center'
+    a ui-sref="public.vacancies.show({id: obj.id})"
+      | {{ obj.name }}
+  .col-sm-10
+    .col-sm-8
+      h4 {{ obj.salary }}
+      p.glyphicon.glyphicon-envelope
+        span
+          | &nbsp {{ obj.email }}
+    .col-sm-8
+      p.glyphicon.glyphicon-phone-alt
+        span
+          | &nbsp  {{ obj.phone }}
+    .col-sm-8
+      p
+        span {{obj.skills[0].name}},
+        span {{obj.skills[1].name}},
+        span {{obj.skills[2].name}}
+      p ng-if='obj.skills[3].name'
+        | ........
+hr

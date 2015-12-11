@@ -37,13 +37,16 @@ describe Vacancy do
   end
 
   it { should be_valid }
+  it { should have_many(:skill_items).dependent(:destroy) }
+  it { should have_many(:skills).through(:skill_items) }
+
 
   context 'name should be present' do
     it { should validate_presence_of(:name) }
   end
 
   context 'name should be correct length' do
-    it { should validate_length_of(:name).is_at_least(3) }
+    it { should validate_length_of(:name).is_at_least(2) }
     it { should validate_length_of(:name).is_at_most(140) }
   end
 
@@ -99,9 +102,28 @@ describe Vacancy do
     end
   end
 
+  describe "when email address is already taken" do
+    before do
+      vacancy_with_same_email = @vacancy.dup
+      vacancy_with_same_email.email = @vacancy.email.upcase
+      vacancy_with_same_email.phone = '+7(222)456-23-45'
+      vacancy_with_same_email.save
+    end
+    it { should_not be_valid }
+  end
+
+  describe "when phone is already taken" do
+    before do
+      @vacancy_with_same_phone = @vacancy.dup
+      @vacancy_with_same_phone.email = 'example_another@mail.ru'
+      @vacancy_with_same_phone.save
+    end
+    it { expect(@vacancy_with_same_phone).not_to be_valid }
+  end
+
   describe 'when email format is valid' do
      it 'should be valid' do
-      addresses = %w[user@foo.com A_US-ER@f.b.org frst.lst@foo.jp a+b@baz.cn]
+      addresses = %w[vacancy@foo.com A_US-ER@f.b.org frst.lst@foo.jp a+b@baz.cn]
       addresses.each do |valid_address|
         @vacancy.email=valid_address
         expect(@vacancy).to be_valid
@@ -143,5 +165,32 @@ describe Vacancy do
       end
     end
   end
+
+  describe 'scopes: ' do
+    it 'salary desc order' do
+      exp, exis = Vacancy.salary_ord.to_sql, Vacancy.order(salary: :desc).to_sql
+      expect(exp).to eq exis
+    end
+
+    it 'all published vacancies' do
+      exp, exis = Vacancy.to_show.to_sql, Vacancy.where(state: :published).to_sql
+      expect(exp).to eq exis
+    end
+
+    context 'pagination' do
+      it 'when page is 0' do
+        exp = Vacancy.pagination(0).to_sql
+        exis = Vacancy.offset(0).limit(5).to_sql
+        expect(exp).to eq exis
+      end
+
+      it 'when page is 1' do
+        exp = Vacancy.pagination(1).to_sql
+        exis = Vacancy.offset(5).limit(5).to_sql
+        expect(exp).to eq exis
+      end
+    end
+  end
+
 
 end

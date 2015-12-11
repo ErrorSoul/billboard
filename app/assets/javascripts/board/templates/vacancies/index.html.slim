@@ -1,0 +1,42 @@
+.col-md-12
+  h4 Vacancies
+  .col-md-2.pull-right
+    .btn.btn-success [
+       ui-sref='vacancies.new'
+       ng-if="!isPublic()"
+    ] Create
+
+table.table.table-striped
+  thead
+    tr
+      th = :name
+      th = :email
+      th = :phone
+      th = :salary
+      th = :published_at
+      th = :validity
+      th = :state
+      th
+
+  tbody
+    tr ng-show='isEmptyVacancies()'
+      td colspan='10' =  :not_found
+
+    tr ng-hide='!isEmptyVacancies()'
+
+      tr ng-repeat='vacancy in vacancies'
+        td {{ vacancy.name }}
+        td {{ vacancy.email }}
+        td {{ beauty_phone(vacancy.phone) }}
+        td {{ vacancy.salary }}
+        td {{ vacancy.published_at | date: 'dd.MM.yyyy' }}
+        td {{ vacancy.validity }}
+        td
+          span ng-class="labelHelper(vacancy.state)"
+            | {{ vacancy.state }}
+        td
+          ng-include src="'shared/buttons_group.html'"
+
+
+
+.div ng-include="'shared/pagination.html'"

@@ -1,0 +1,7 @@
+nav
+  ul.pagination
+    li.my-pagination [
+      ng-repeat='num in pagesCount(page_num)'
+      ng-class='isActive($index, page)'
+    ]
+      a ng-click='getElements($index)' {{ num }}

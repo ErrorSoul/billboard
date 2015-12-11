@@ -1,0 +1,49 @@
+.panel.panel-default
+
+  .panel-heading Employee
+
+  .panel-body
+    form.form-horizontal.css-form
+      .form-group.col-sm-12
+        label.control-label.col-sm-4 First Name:
+        .col-sm-8
+          p.form-control-static {{ employee.first_name }}
+
+      .form-group.col-sm-12
+        label.control-label.col-sm-4 Middle Name:
+        .col-sm-8
+          p.form-control-static {{ employee.middle_name }}
+
+      .form-group.col-sm-12
+        label.control-label.col-sm-4 Last Name:
+        .col-sm-8
+          p.form-control-static {{ employee.last_name }}
+
+      .form-group.col-sm-12
+        label.control-label.col-sm-4 Email:
+        .col-sm-8
+          p.form-control-static {{ employee.email }}
+
+      .form-group.col-sm-12
+        label.control-label.col-sm-4 Phone:
+        .col-sm-8
+          p.form-control-static {{ beauty_phone(employee.phone) }}
+
+      .form-group.col-sm-12
+        label.control-label.col-sm-4 Salary:
+        .col-sm-8
+          p.form-control-static {{ employee.salary }}
+
+      .form-group.col-sm-12
+        label.control-label.col-sm-4 Status:
+        .col-sm-8
+          p.form-control-static {{ employee.status }}
+
+      .div ng-include="'shared/skills.html'"
+
+      .form-group ng-hide="isPublic()"
+        .col-sm-12
+          button.btn.btn-default.btn-warning [
+            ui-sref="employees.update({id: id})"
+
+          ] EDIT

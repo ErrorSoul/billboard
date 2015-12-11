@@ -1,0 +1,40 @@
+.col-sm-6.col-sm-offset-2 style='margin-bottom: 30px'
+  .btn.btn-success [
+    ng-click="findElements()"
+    ng-show="isPublic()"
+  ] Find
+
+.col-sm-12 ng-show="find_flag"
+  .col-sm-6
+    .panel.panel-default
+      .panel-heading All skills
+      .panel-body
+        div ng-show="isEmptyArray(needed_array)"
+          p.text-warning
+            | Not Found
+        .media ng-repeat="obj in needed_array"
+          ng-include src="makeUrl()"
+        .col-sm-12
+          .btn.btn-warning.btn-lg [
+            ng-hide='need_flag'
+            ng-click="getAllElements()"
+          ]
+            span.glyphicon.glyphicon-plus
+
+
+  .col-sm-6
+    .panel.panel-default
+      .panel-heading Part of skills
+      .panel-body
+        div ng-show="isEmptyArray(parted_array)"
+          p.text-warning
+            | Not Found
+        .media ng-repeat="obj in parted_array"
+          ng-include src="makeUrl()"
+        .col-sm-12
+          .btn.btn-warning.btn-lg [
+            ng-hide='part_flag'
+            ng-click="getPartElements()"
+
+          ]
+            span.glyphicon.glyphicon-plus
