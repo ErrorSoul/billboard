@@ -37,7 +37,9 @@
       .form-group.col-sm-12
         label.control-label.col-sm-4 Status:
         .col-sm-8
-          p.form-control-static {{ employee.status }}
+          p.form-control-static
+            span ng-class="labelHelper(employee.status)"
+              | {{ employee.status }}
 
       .div ng-include="'shared/skills.html'"
 
